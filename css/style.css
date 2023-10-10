@@ -30,6 +30,13 @@ grid-area: lists;
     padding-left: 1.1em;
 }
 
+.list-name {
+    cursor: pointer;
+}
+
+.list-name:hover {
+    opacity: 0.7;
+}
 
 form {
     display: flex;
@@ -93,6 +100,9 @@ background: grey;
 .todo-header {
     background-color: aqua;
     padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .list-title {
@@ -101,8 +111,20 @@ background: grey;
 
 .task-count {
     margin: 0;
+    font-size: 1rem;
 }
 
 .todo-body {
     padding: 2rem;
 }
+
+
+[type=checkbox]:checked + label{
+    opacity: 0.5;
+    text-decoration: line-through;
+  }
+
+  .delete-tasks {
+    display: flex;
+    justify-content: space-evenly;
+  }
