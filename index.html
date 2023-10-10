@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To Do List</title>
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <h1>My To Do List</h1>
+    <h1 class="title">My To Do List</h1>
     <div class="all-tasks">
-      <h2 class="task-list-title"></h2>
+      <h2 class="task-list-title">My lists</h2>
       <ul class="task-list">
         <li class="active-list">Bootcamp</li>
         <li>Work</li>
@@ -17,7 +18,7 @@
       <form action="">
         <!-- add labels later! very important -->
         <input type="text" class="new list" placeholder="new list name" />
-        <button class="btn list">+</button>
+        <button class="btn create">+</button>
       </form>
     </div>
     <div class="todo-list">
@@ -27,13 +28,33 @@
       </div>
       <div class="todo-body">
         <div class="tasks">
+          <!-- task 1 -->
           <div class="task">
             <input type="checkbox" id="task-1" />
             <label for="task-1">Finish DOM Excercises</label>
           </div>
+          <!-- task 2 -->
+          <div class="task">
+            <input type="checkbox" id="task-2" />
+            <label for="task-1">Start working on Project</label>
+          </div>
+          <!-- task 3 -->
+          <div class="task">
+            <input type="checkbox" id="task-3" />
+            <label for="task-1">Watch Video about OOP</label>
+          </div>
         </div>
-        <div class="new-task-creator"></div>
-        <div class="delete-tasks"></div>
+        <div class="new-task-creator">
+          <form action="">
+            <!-- add labels later! very important -->
+            <input type="text" class="new task" placeholder="new task name" />
+            <button class="btn create">+</button>
+          </form>
+        </div>
+        <div class="delete-tasks">
+          <button class="btn delete">Clear completed tasks</button
+          ><button class="btn delete">Delete list</button>
+        </div>
       </div>
     </div>
   </body>

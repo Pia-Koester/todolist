@@ -1,0 +1,108 @@
+*, *::before, *::after {
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    display: grid;
+    grid: 
+    "header header header header" auto
+    ". lists active ." auto /
+    1fr minmax(100px, 300px) minmax(250px, 500px) 1fr; 
+    font-size: 1.5rem;
+}
+
+.title {
+grid-area: header;
+text-align: center;
+font-size: 3rem;
+}
+
+.all-tasks {
+grid-area: lists;
+}
+
+.task-list {
+    line-height: 1.7;
+    font-size: 1.2rem;
+    list-style: circle;
+    padding-left: 1.1em;
+}
+
+
+form {
+    display: flex;
+}
+
+.btn {
+    cursor: pointer;
+    background: 0;
+    border:0; 
+    padding: 0;
+    color: inherit;
+}
+
+.btn.create{
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-right: 0.25em;
+    transition: opacity 250ms ease-in;
+}
+
+.btn.create:hover {
+    opacity: 0.7;
+}
+
+
+.new {
+    background: transparent;
+    border: 0;  /* so that there is no box around the input area */
+    border-bottom: 1px solid currentColor; /*currentColor means the text color*/
+    font-size: inherit; /*this will be the same as defined elsewhere*/
+    /*changes so that the active state is a bit differen */
+    outline: none; 
+    transition: border-bottom 150ms ease-in;
+order: 2;
+}
+
+
+.new:focus {
+    border-bottom-width: 3px; /*border gets bigger once the input area is selected */
+}
+
+.new:focus::placeholder {
+    opacity: 0.2; /*placeholder text gets less visible */
+}
+
+.new.list {
+   font-size: 1.2rem; 
+}
+
+.active-list {
+    font-weight: 700;
+}
+
+.todo-list {
+
+grid-area: active;
+background: grey;
+
+}
+
+.todo-header {
+    background-color: aqua;
+    padding: 2rem;
+}
+
+.list-title {
+    margin:0;
+}
+
+.task-count {
+    margin: 0;
+}
+
+.todo-body {
+    padding: 2rem;
+}
