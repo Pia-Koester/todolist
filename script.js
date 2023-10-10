@@ -1,6 +1,7 @@
 const listsContainer = document.querySelector("[data-lists]");
 const newListForm = document.querySelector("[data-new-list-form]");
 const newListInput = document.querySelector("[data-new-list-input]");
+const deleteListButton = document.querySelector("[data-delete-list-button]");
 
 listsContainer.addEventListener("click", (e) => { // checking if user has clicked on a li item
     if (e.target.tagName.toLowerCase() === "li") {
@@ -16,6 +17,11 @@ let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [] // ch
 console.log(lists);
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY) // checks local storage for the active list id
 
+deleteListButton.addEventListener("click", (e) => {
+    lists = lists.filter(list => list.id !== selectedListId); // lists array gets overwritten with an array which is filtert to not contain the currently selected list
+    selectedListId = null; 
+    saveAndRender();
+})
 
 newListForm.addEventListener("submit", (e) => {
     e.preventDefault()
@@ -57,7 +63,7 @@ function render() { // this function creates the list and makes it a child of th
     )
 }
 
-function clearElement(element) { // removes any elements that might have been hardcoded in the html before
+function clearElement(element) { // removes any elements that might have been hardcoded in the html before, also good because it removes all the classes like the selected list id and stuff, 
  while (element.firstChild){
     element.removeChild(element.firstChild);
  }
