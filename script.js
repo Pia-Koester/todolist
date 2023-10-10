@@ -2,6 +2,9 @@ const listsContainer = document.querySelector("[data-lists]");
 const newListForm = document.querySelector("[data-new-list-form]");
 const newListInput = document.querySelector("[data-new-list-input]");
 const deleteListButton = document.querySelector("[data-delete-list-button]");
+const listDisplayContainer = document.querySelector("[data-list-display-container]");
+const listTitleElement = document.querySelector("[data-list-title");
+const tasksContainer = document.querySelector("[data-tasks]");
 
 listsContainer.addEventListener("click", (e) => { // checking if user has clicked on a li item
     if (e.target.tagName.toLowerCase() === "li") {
@@ -48,7 +51,23 @@ function save() { // this function saves the list array as a string into local s
 }
 
 function render() { // this function creates the list and makes it a child of the ul
-    clearElement(listsContainer)
+    clearElement(listsContainer); 
+    renderLists(); // creates the Lists overview with all the different to do lists containing tasks
+    const selectedList = lists.find(list => list.id === selectedListId ); //define the list which is selected
+    // check if any list is selected, if not there should be no tasks visible
+    if (selectedListId == null) {
+        listDisplayContainer.style.display = "none";
+    } else {
+        listDisplayContainer.style.display = "";
+        listTitleElement.innerText = selectedList.name; // setting the title of the container to the name of the object with the id which is the selcted id
+    }
+    
+
+    
+}
+
+
+function renderLists(){
     lists.forEach( (list) => {
         const listElement = document.createElement("li");
         listElement.dataset.listId = list.id;
@@ -58,9 +77,7 @@ function render() { // this function creates the list and makes it a child of th
             listElement.classList.add("active-list"); // gives the selected list the class of active so that the styling is different
         }
         listsContainer.appendChild(listElement);
-    }
-
-    )
+    })
 }
 
 function clearElement(element) { // removes any elements that might have been hardcoded in the html before, also good because it removes all the classes like the selected list id and stuff, 
