@@ -32,7 +32,7 @@
         <h2 class="list-title" data-list-title>Bootcamp</h2>
       </div>
       <div class="todo-body">
-        <div class="tasks">
+        <div class="tasks" data-tasks>
           <!-- task 1 -->
           <div class="task">
             <input type="checkbox" id="task-1" />
@@ -50,9 +50,14 @@
           </div>
         </div>
         <div class="new-task-creator">
-          <form action="">
+          <form action="" data-new-task-forms>
             <!-- add labels later! very important -->
-            <input type="text" class="new task" placeholder="new task name" />
+            <input
+              type="text"
+              class="new task"
+              placeholder="new task name"
+              data-new-task-input
+            />
             <button class="btn create">+</button>
           </form>
         </div>
@@ -64,5 +69,11 @@
         </div>
       </div>
     </div>
+    <template id="task-template">
+      <div class="task">
+        <input type="checkbox" />
+        <label></label>
+      </div>
+    </template>
   </body>
 </html>

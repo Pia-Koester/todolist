@@ -5,6 +5,11 @@ const deleteListButton = document.querySelector("[data-delete-list-button]");
 const listDisplayContainer = document.querySelector("[data-list-display-container]");
 const listTitleElement = document.querySelector("[data-list-title");
 const tasksContainer = document.querySelector("[data-tasks]");
+const taskTemplate = document.getElementById("task-template");
+const newTaskForm = document.querySelector("[data-new-task-forms]");
+const newTaskInput = document.querySelector("[data-new-task-input]");
+
+
 
 listsContainer.addEventListener("click", (e) => { // checking if user has clicked on a li item
     if (e.target.tagName.toLowerCase() === "li") {
@@ -13,7 +18,7 @@ listsContainer.addEventListener("click", (e) => { // checking if user has clicke
     }
 })
 
-const LOCAL_STORAGE_LIST_KEY = "task.lists"
+const LOCAL_STORAGE_LIST_KEY = "task.lists" // task is the namespace to prevent overwriting
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId" // creates key value pair for local storage to identify the active list
 
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [] // checks if the key already exists in the local storage and if yes then it gets them if not it uses an empty array
@@ -35,10 +40,28 @@ newListForm.addEventListener("submit", (e) => {
     lists.push(list) // the new created listobject will be pushed to the lists array
     saveAndRender() // saves to local storage and recreates the list names to be shown from the array
 })
-
 function createList(name) { // this function creates a new list name and gives it a unique ID using the date
     return {id: Date.now().toString(), name: name, tasks: []}
 }
+
+newTaskForm.addEventListener("submit", (e) => {
+    e.preventDefault()
+    const taskName = newTaskInput.value; 
+    if (taskName == null || taskName === "") return // if the person did not enter any information the function returns and therefore stopps
+    const task = createTask(taskName) // the function which creates a new list object with the date as id is called with the value of the input as parameter
+    newTaskInput.value = null // after submitting the input area is going to be empty
+    const selectedList = lists.find((list) => list.id === selectedListId);
+    selectedList.tasks.push(task);
+    saveAndRender();
+})
+
+
+
+
+function createTask(name) {
+    return {id: Date.now().toString(), name: name}
+}
+
 
 function saveAndRender() { // saves all the lists to local storage and calls the other functions
     save() 
@@ -54,16 +77,28 @@ function render() { // this function creates the list and makes it a child of th
     clearElement(listsContainer); 
     renderLists(); // creates the Lists overview with all the different to do lists containing tasks
     const selectedList = lists.find(list => list.id === selectedListId ); //define the list which is selected
-    // check if any list is selected, if not there should be no tasks visible
+    // check if any list is selected, if not there should be no task container visible
     if (selectedListId == null) {
         listDisplayContainer.style.display = "none";
     } else {
-        listDisplayContainer.style.display = "";
+        listDisplayContainer.style.display = ""; // if a list is selected it should be visible 
         listTitleElement.innerText = selectedList.name; // setting the title of the container to the name of the object with the id which is the selcted id
     }
-    
+    clearElement(tasksContainer); // remove all the hardcoded and not locally stored tasks 
+    renderTasks(selectedList);
+}
 
-    
+function renderTasks (selectedList) {
+selectedList.tasks.forEach((task) => {
+    const taskElement = document.importNode(taskTemplate.content, true);
+    const checkbox = taskElement.querySelector("input");
+    checkbox.id = task.id;
+   //  checkbox.checked = task.complete; maybe leave it out because I dont have remaining task counter
+    const label = taskElement.querySelector("label");
+    label.htmlFor = task.id;
+    label.append(task.name); 
+    tasksContainer.appendChild(taskElement);
+})
 }
 
 
