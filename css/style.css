@@ -11,12 +11,18 @@ body{
     ". lists active ." auto /
     1fr minmax(100px, 300px) minmax(250px, 500px) 1fr; 
     font-size: 1.5rem;
+    background-color: #fd7287;
 }
 
 .title {
 grid-area: header;
 text-align: center;
 font-size: 3rem;
+background-image: url("/css/pixelOffice.jpg");
+background-size: cover;
+background-repeat: no-repeat;
+color: white;
+padding: 20rem;
 }
 
 .all-tasks {
@@ -98,7 +104,7 @@ background: grey;
 }
 
 .todo-header {
-    background-color: aqua;
+
     padding: 2rem;
     display: flex;
     align-items: center;

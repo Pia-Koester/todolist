@@ -1,3 +1,6 @@
+// To dos: try to recreate this with using the classnames instead of data 
+// rewrite the functions so that they fit my style
+
 const listsContainer = document.querySelector("[data-lists]");
 const newListForm = document.querySelector("[data-new-list-form]");
 const newListInput = document.querySelector("[data-new-list-input]");
@@ -61,9 +64,6 @@ function render() { // this function creates the list and makes it a child of th
         listDisplayContainer.style.display = "";
         listTitleElement.innerText = selectedList.name; // setting the title of the container to the name of the object with the id which is the selcted id
     }
-    
-
-    
 }
 
 
