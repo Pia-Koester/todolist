@@ -1,7 +1,5 @@
-// todo: change the query selectors so that it does not use datasets
-// make list items editable
-// add function to delete list item 
-// style whole application
+
+// add function to delete task item 
 
 const listsContainer = document.querySelector(".task-list");
 const newListForm = document.querySelector("[data-new-list-form]");
@@ -16,6 +14,7 @@ const newTaskInput = document.querySelector("[data-new-task-input]");
 
 
 
+
 listsContainer.addEventListener("click", (e) => { // checking if user has clicked on a li item
     if (e.target.tagName.toLowerCase() === "li") {
         selectedListId = e.target.dataset.listId; // if li is clicked the dataset will get the id we created in the render function
@@ -27,7 +26,6 @@ const LOCAL_STORAGE_LIST_KEY = "task.lists" // task is the namespace to prevent 
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = "task.selectedListId" // creates key value pair for local storage to identify the active list
 
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [] // checks if the key already exists in the local storage and if yes then it gets them if not it uses an empty array
-console.log(lists);
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY) // checks local storage for the active list id
 
 deleteListButton.addEventListener("click", (e) => {
@@ -35,6 +33,8 @@ deleteListButton.addEventListener("click", (e) => {
     selectedListId = null; 
     saveAndRender();
 })
+
+
 
 newListForm.addEventListener("submit", (e) => {
     e.preventDefault()
@@ -98,14 +98,22 @@ selectedList.tasks.forEach((task) => {
     const taskElement = document.importNode(taskTemplate.content, true);
     const checkbox = taskElement.querySelector("input");
     checkbox.id = task.id;
-   //  checkbox.checked = task.complete; maybe leave it out because I dont have remaining task counter
     const label = taskElement.querySelector("label");
-    //label.htmlFor = task.id; - commented out for now so that the checkbox and label are not connected
     label.append(task.name); 
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "X";
+    deleteButton.classList.add("btn", "delete-btn")
+    taskElement.querySelector(".task").appendChild(deleteButton);
+
+    deleteButton.addEventListener("click", () => {
+      // Remove the task from the selected list
+      selectedList.tasks = selectedList.tasks.filter((t) => t.id !== task.id);
+      saveAndRender();
+    });
     tasksContainer.appendChild(taskElement);
     // neuer Eventlistener auf double click und dann checkbox checked setzen
+
     label.addEventListener("dblclick", (e) => {
-    console.log(e.target.previousSibling.previousSibling)
     const checkbox = e.target.previousSibling.previousSibling;  // selecting the checkbox because it is the sibling next to the lable
        checkbox.checked =  checkbox.checked ? false : true; // controls whether or not the value checked is set to true - if it is true then set it to false and uncheck it. if it is false then check the box 
 
