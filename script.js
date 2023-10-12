@@ -1,3 +1,8 @@
+// todo: change the query selectors so that it does not use datasets
+// make list items editable
+// add function to delete list item 
+// style whole application
+
 const listsContainer = document.querySelector("[data-lists]");
 const newListForm = document.querySelector("[data-new-list-form]");
 const newListInput = document.querySelector("[data-new-list-input]");
@@ -100,6 +105,10 @@ selectedList.tasks.forEach((task) => {
     tasksContainer.appendChild(taskElement);
 })
 }
+
+// create function to make tasks editable
+// - get the label from task template and call it taskLabel
+// 
 
 
 function renderLists(){
