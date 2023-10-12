@@ -4,58 +4,81 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Open+Sans:wght@600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css/style.css" />
+    <script defer src="script.js"></script>
   </head>
   <body>
-    <h1 class="title">My To Do List</h1>
-    <div class="all-tasks">
-      <h2 class="task-list-title">My lists</h2>
-      <ul class="task-list">
-        <li class="active-list">Bootcamp</li>
-        <li>Work</li>
-        <li>Gorceries</li>
-      </ul>
-      <form action="">
-        <!-- add labels later! very important -->
-        <input type="text" class="new list" placeholder="new list name" />
-        <button class="btn create">+</button>
-      </form>
-    </div>
-    <div class="todo-list">
-      <div class="todo-header">
-        <h2 class="list-title">Bootcamp</h2>
-        <p class="task-count">3 tasks remaining</p>
+    <div class="hero">
+      <h1 class="title">My To Do List</h1>
+      <div class="all-tasks">
+        <h2 class="task-list-title">My lists</h2>
+        <ul class="task-list">
+          <li class="active-list list-name">Bootcamp</li>
+          <li class="list-name">Work</li>
+          <li class="list-name">Gorceries</li>
+        </ul>
+        <form action="" class="list-form" data-new-list-form>
+          <!-- add labels later! very important -->
+          <input
+            type="text"
+            class="new list"
+            placeholder="new list name"
+            data-new-list-input
+          />
+          <button class="btn create">+</button>
+        </form>
+        </div>
       </div>
+    </div>
+    <div class="todo-list" data-list-display-container>
+      <div class="todo-header">
+        <h2 class="list-title" data-list-title>Bootcamp</h2>
+          <button class="btn delete" data-delete-list-button>
+            Delete list
+          </button>
       <div class="todo-body">
-        <div class="tasks">
+        <div class="tasks" data-tasks>
           <!-- task 1 -->
           <div class="task">
             <input type="checkbox" id="task-1" />
-            <label for="task-1">Finish DOM Excercises</label>
+            <label for="task-1 ">Finish DOM Excercises</label>
           </div>
           <!-- task 2 -->
           <div class="task">
             <input type="checkbox" id="task-2" />
-            <label for="task-1">Start working on Project</label>
+            <label for="task-2 ">Start working on Project</label>
           </div>
           <!-- task 3 -->
           <div class="task">
             <input type="checkbox" id="task-3" />
-            <label for="task-1">Watch Video about OOP</label>
+            <label for="task-3 ">Watch Video about OOP</label>
           </div>
         </div>
         <div class="new-task-creator">
-          <form action="">
+          <form action="" data-new-task-forms>
             <!-- add labels later! very important -->
-            <input type="text" class="new task" placeholder="new task name" />
+            <input
+              type="text"
+              class="new task"
+              placeholder="new task name"
+              data-new-task-input
+            />
             <button class="btn create">+</button>
           </form>
         </div>
-        <div class="delete-tasks">
-          <button class="btn delete">Clear completed tasks</button
-          ><button class="btn delete">Delete list</button>
-        </div>
       </div>
     </div>
+    <template id="task-template">
+      <div class="task">
+        <input type="checkbox" />
+        <label contenteditable="true"></label>
+      </div>
+    </template>
   </body>
 </html>
