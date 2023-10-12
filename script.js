@@ -13,8 +13,6 @@ const newTaskForm = document.querySelector("[data-new-task-forms]");
 const newTaskInput = document.querySelector("[data-new-task-input]");
 
 
-
-
 listsContainer.addEventListener("click", (e) => { // checking if user has clicked on a li item
     if (e.target.tagName.toLowerCase() === "li") {
         selectedListId = e.target.dataset.listId; // if li is clicked the dataset will get the id we created in the render function
@@ -110,6 +108,7 @@ selectedList.tasks.forEach((task) => {
       selectedList.tasks = selectedList.tasks.filter((t) => t.id !== task.id);
       saveAndRender();
     });
+    
     tasksContainer.appendChild(taskElement);
     // neuer Eventlistener auf double click und dann checkbox checked setzen
 
