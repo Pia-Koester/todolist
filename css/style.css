@@ -16,7 +16,7 @@ body{
 }
 
 .hero {
-    background-image: url("/css/pixelOffice.jpg");
+    background-image: url("./pixelOffice.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center; 
