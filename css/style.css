@@ -105,17 +105,16 @@ form {
 }
 
 .delete-btn {
-    font-family: 'Bungee', sans-serif;
+    font-family: 'Bungee Shade', sans-serif;
     font-size: 1.1rem;
-   margin-left: auto;
-   padding: .5rem;
-color: white;
-transition: color 300ms ease-in;
+    margin-left: auto;
+    padding: .5rem;
+    color: white;
+    transition: color 300ms ease-in;
   }
 
   .delete-btn:hover {
     color: red;
-
   }
 
 .new {
