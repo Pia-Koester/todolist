@@ -11,12 +11,12 @@
     <h1 class="title">My To Do List</h1>
     <div class="all-tasks">
       <h2 class="task-list-title">My lists</h2>
-      <ul class="task-list" data-lists>
+      <ul class="task-list">
         <li class="active-list list-name">Bootcamp</li>
         <li class="list-name">Work</li>
         <li class="list-name">Gorceries</li>
       </ul>
-      <form action="" data-new-list-form>
+      <form action="" class="list-form" data-new-list-form>
         <!-- add labels later! very important -->
         <input
           type="text"
@@ -50,19 +50,29 @@
           </div>
         </div>
         <div class="new-task-creator">
-          <form action="">
+          <form action="" data-new-task-forms>
             <!-- add labels later! very important -->
-            <input type="text" class="new task" placeholder="new task name" />
+            <input
+              type="text"
+              class="new task"
+              placeholder="new task name"
+              data-new-task-input
+            />
             <button class="btn create">+</button>
           </form>
         </div>
         <div class="delete-tasks">
-          <button class="btn delete">Clear completed tasks</button
-          ><button class="btn delete" data-delete-list-button>
+          <button class="btn delete" data-delete-list-button>
             Delete list
           </button>
         </div>
       </div>
     </div>
+    <template id="task-template">
+      <div class="task">
+        <input type="checkbox" />
+        <label contenteditable="true"></label>
+      </div>
+    </template>
   </body>
 </html>

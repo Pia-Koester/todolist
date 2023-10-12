@@ -8,7 +8,7 @@ body{
     display: grid;
     grid: 
     "header header header header" auto
-    ". lists active ." auto /
+    ".. lists active .." auto /
     1fr minmax(100px, 300px) minmax(250px, 500px) 1fr; 
     font-size: 1.5rem;
     background-color: #fd7287;
