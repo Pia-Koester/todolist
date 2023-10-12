@@ -3,7 +3,7 @@
 // add function to delete list item 
 // style whole application
 
-const listsContainer = document.querySelector("[data-lists]");
+const listsContainer = document.querySelector(".task-list");
 const newListForm = document.querySelector("[data-new-list-form]");
 const newListInput = document.querySelector("[data-new-list-input]");
 const deleteListButton = document.querySelector("[data-delete-list-button]");
@@ -100,15 +100,18 @@ selectedList.tasks.forEach((task) => {
     checkbox.id = task.id;
    //  checkbox.checked = task.complete; maybe leave it out because I dont have remaining task counter
     const label = taskElement.querySelector("label");
-    label.htmlFor = task.id;
+    //label.htmlFor = task.id; - commented out for now so that the checkbox and label are not connected
     label.append(task.name); 
     tasksContainer.appendChild(taskElement);
+    // neuer Eventlistener auf double click und dann checkbox checked setzen
+    label.addEventListener("dblclick", (e) => {
+console.log(e.target.previousSibling.previousSibling)
+const checkbox = e.target.previousSibling.previousSibling;  // selecting the checkbox because it is the sibling next to the lable
+       checkbox.checked =  checkbox.checked ? false : true; // controls whether or not the value checked is set to true - if it is true then set it to false and uncheck it. if it is false then check the box 
+
+    } )
 })
 }
-
-// create function to make tasks editable
-// - get the label from task template and call it taskLabel
-// 
 
 
 function renderLists(){
