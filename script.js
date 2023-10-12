@@ -105,11 +105,15 @@ selectedList.tasks.forEach((task) => {
     tasksContainer.appendChild(taskElement);
     // neuer Eventlistener auf double click und dann checkbox checked setzen
     label.addEventListener("dblclick", (e) => {
-console.log(e.target.previousSibling.previousSibling)
-const checkbox = e.target.previousSibling.previousSibling;  // selecting the checkbox because it is the sibling next to the lable
+    console.log(e.target.previousSibling.previousSibling)
+    const checkbox = e.target.previousSibling.previousSibling;  // selecting the checkbox because it is the sibling next to the lable
        checkbox.checked =  checkbox.checked ? false : true; // controls whether or not the value checked is set to true - if it is true then set it to false and uncheck it. if it is false then check the box 
 
     } )
+    label.addEventListener("blur", () => {
+        task.name = label.innerText;
+        saveAndRender();
+    });
 })
 }
 
